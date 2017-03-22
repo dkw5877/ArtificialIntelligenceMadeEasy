@@ -14,6 +14,9 @@
 		CE9083031E833C4100ADB350 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9083011E833C4100ADB350 /* LaunchScreen.storyboard */; };
 		CE90830E1E833C4200ADB350 /* ArtificialIntelligenceMadeEasyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE90830D1E833C4200ADB350 /* ArtificialIntelligenceMadeEasyTests.swift */; };
 		CE9083191E833C4200ADB350 /* ArtificialIntelligenceMadeEasyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9083181E833C4200ADB350 /* ArtificialIntelligenceMadeEasyUITests.swift */; };
+		CE9083291E833CA500ADB350 /* FrontierSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9083261E833CA500ADB350 /* FrontierSearch.swift */; };
+		CE90832A1E833CA500ADB350 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9083271E833CA500ADB350 /* Node.swift */; };
+		CE90832B1E833CA500ADB350 /* Path.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9083281E833CA500ADB350 /* Path.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		CE9083141E833C4200ADB350 /* ArtificialIntelligenceMadeEasyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ArtificialIntelligenceMadeEasyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9083181E833C4200ADB350 /* ArtificialIntelligenceMadeEasyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtificialIntelligenceMadeEasyUITests.swift; sourceTree = "<group>"; };
 		CE90831A1E833C4200ADB350 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE9083261E833CA500ADB350 /* FrontierSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FrontierSearch.swift; path = Algorithms/FrontierSearch.swift; sourceTree = "<group>"; };
+		CE9083271E833CA500ADB350 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Node.swift; path = "Data Structures/Node.swift"; sourceTree = "<group>"; };
+		CE9083281E833CA500ADB350 /* Path.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Path.swift; path = "Data Structures/Path.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,8 @@
 		CE9082F71E833C4100ADB350 /* ArtificialIntelligenceMadeEasy */ = {
 			isa = PBXGroup;
 			children = (
+				CE90832C1E833CAC00ADB350 /* Algorithms */,
+				CE90832D1E833CC700ADB350 /* Data Structures */,
 				CE9082F81E833C4100ADB350 /* AppDelegate.swift */,
 				CE9082FA1E833C4100ADB350 /* ViewController.swift */,
 				CE9082FC1E833C4100ADB350 /* Main.storyboard */,
@@ -123,6 +131,23 @@
 				CE90831A1E833C4200ADB350 /* Info.plist */,
 			);
 			path = ArtificialIntelligenceMadeEasyUITests;
+			sourceTree = "<group>";
+		};
+		CE90832C1E833CAC00ADB350 /* Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				CE9083261E833CA500ADB350 /* FrontierSearch.swift */,
+			);
+			name = Algorithms;
+			sourceTree = "<group>";
+		};
+		CE90832D1E833CC700ADB350 /* Data Structures */ = {
+			isa = PBXGroup;
+			children = (
+				CE9083271E833CA500ADB350 /* Node.swift */,
+				CE9083281E833CA500ADB350 /* Path.swift */,
+			);
+			name = "Data Structures";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE9083291E833CA500ADB350 /* FrontierSearch.swift in Sources */,
 				CE9082FB1E833C4100ADB350 /* ViewController.swift in Sources */,
 				CE9082F91E833C4100ADB350 /* AppDelegate.swift in Sources */,
+				CE90832B1E833CA500ADB350 /* Path.swift in Sources */,
+				CE90832A1E833CA500ADB350 /* Node.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +542,7 @@
 				CE90831F1E833C4200ADB350 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE9083201E833C4200ADB350 /* Build configuration list for PBXNativeTarget "ArtificialIntelligenceMadeEasyTests" */ = {
 			isa = XCConfigurationList;
@@ -522,6 +551,7 @@
 				CE9083221E833C4200ADB350 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CE9083231E833C4200ADB350 /* Build configuration list for PBXNativeTarget "ArtificialIntelligenceMadeEasyUITests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +560,7 @@
 				CE9083251E833C4200ADB350 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
