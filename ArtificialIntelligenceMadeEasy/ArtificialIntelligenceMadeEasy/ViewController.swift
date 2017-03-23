@@ -12,13 +12,22 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var results = [Path]()
+    var paths = [Path]()
+    var availableTimes = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTableView()
+        testFrontierSearch(searchMethod: .DFS)
+        testGenerateAndSearch()
+    }
+
+    func configureTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        testFrontierSearch(searchMethod: .DFS)
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
+
     }
 
     func testFrontierSearch(searchMethod: SearchMethod) {
@@ -28,6 +37,13 @@ class ViewController: UIViewController {
 
     }
 
+    func testGenerateAndSearch() {
+        let inputs = createSearchInputs()
+        let algorithm = GenerateAndSearch()
+        availableTimes = algorithm.generateAndSearch(anna: inputs[0], betty: inputs[1], cara: inputs[2], donna: inputs[3])
+        print(availableTimes)
+    }
+
     func simplaGraphTest(searchMethod: SearchMethod) {
 
         let algorith = FrontierSearch()
@@ -35,19 +51,19 @@ class ViewController: UIViewController {
 
         let pa = algorith.search(query: "a", node: start, searchMethod: searchMethod)
         print(printer(path: pa))
-        results.append(pa)
+        paths.append(pa)
 
         let pc = algorith.search(query: "c", node: start, searchMethod: searchMethod)
         print(printer(path: pc))
-        results.append(pc)
+        paths.append(pc)
 
         let pd = algorith.search(query: "d", node: start, searchMethod: searchMethod)
         print(printer(path: pd))
-        results.append(pd)
+        paths.append(pd)
 
         let pg = algorith.search(query: "g", node: start, searchMethod: searchMethod)
         print(printer(path: pg))
-        results.append(pg)
+        paths.append(pg)
     }
 
     func complexGraphTest(searchMethod: SearchMethod) {
@@ -57,7 +73,7 @@ class ViewController: UIViewController {
 
         let pg = algorith.search(query: "g", node: start, searchMethod: searchMethod)
         print(printer(path: pg))
-        results.append(pg)
+        paths.append(pg)
     }
 
     func createSimpleGraph() -> Node {
@@ -112,6 +128,16 @@ class ViewController: UIViewController {
     }
 
 
+    func createSearchInputs() -> [[Int]]{
+
+        let anna = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        let betty = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        let cara = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+        let donna = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+
+        return [anna, betty, cara, donna]
+
+    }
     
     func printer( path: Path) -> String {
         if path.contents.isEmpty {
@@ -128,18 +154,49 @@ class ViewController: UIViewController {
 
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results.count
+        switch section {
+        case 0:
+             return paths.count
+        case 1:
+             return availableTimes.count
+        default:
+            return 0
+        }
+
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellID")
-        cell?.textLabel?.text = printer(path: results[indexPath.row])
+        cell?.textLabel?.numberOfLines = 0
+        cell?.textLabel?.lineBreakMode = .byWordWrapping
+
+        switch indexPath.section {
+        case 0:
+            cell?.textLabel?.text = printer(path: paths[indexPath.row])
+        case 1:
+            cell?.textLabel?.text = availableTimes[indexPath.row]
+        default: break
+
+        }
+
         return cell!
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Frontier Search"
+        switch section {
+        case 0:
+            return "Frontier Search"
+        case 1:
+            return "Generate and Test"
+        default:
+            return nil
+        }
+
     }
 }
 

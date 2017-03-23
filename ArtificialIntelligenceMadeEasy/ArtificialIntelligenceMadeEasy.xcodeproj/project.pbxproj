@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE460F4D1E846CFE0088BD21 /* GenerateAndSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE460F4C1E846CFE0088BD21 /* GenerateAndSearch.swift */; };
 		CE9082F91E833C4100ADB350 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9082F81E833C4100ADB350 /* AppDelegate.swift */; };
 		CE9082FB1E833C4100ADB350 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9082FA1E833C4100ADB350 /* ViewController.swift */; };
 		CE9082FE1E833C4100ADB350 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE9082FC1E833C4100ADB350 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CE460F4C1E846CFE0088BD21 /* GenerateAndSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenerateAndSearch.swift; path = Algorithms/GenerateAndSearch.swift; sourceTree = "<group>"; };
 		CE9082F51E833C4100ADB350 /* ArtificialIntelligenceMadeEasy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ArtificialIntelligenceMadeEasy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9082F81E833C4100ADB350 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9082FA1E833C4100ADB350 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				CE9083261E833CA500ADB350 /* FrontierSearch.swift */,
+				CE460F4C1E846CFE0088BD21 /* GenerateAndSearch.swift */,
 			);
 			name = Algorithms;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE460F4D1E846CFE0088BD21 /* GenerateAndSearch.swift in Sources */,
 				CE9083291E833CA500ADB350 /* FrontierSearch.swift in Sources */,
 				CE9082FB1E833C4100ADB350 /* ViewController.swift in Sources */,
 				CE9082F91E833C4100ADB350 /* AppDelegate.swift in Sources */,
