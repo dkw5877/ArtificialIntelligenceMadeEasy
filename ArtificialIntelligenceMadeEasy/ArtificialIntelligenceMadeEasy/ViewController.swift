@@ -18,32 +18,49 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        testFrontierSearch()
+        testFrontierSearch(searchMethod: .DFS)
     }
 
-    func testFrontierSearch() {
+    func testFrontierSearch(searchMethod: SearchMethod) {
+
+        simplaGraphTest(searchMethod: searchMethod)
+        complexGraphTest(searchMethod: searchMethod)
+
+    }
+
+    func simplaGraphTest(searchMethod: SearchMethod) {
 
         let algorith = FrontierSearch()
-        let start = createGraphForFrontierSearch()
+        let start = createSimpleGraph()
 
-        let pa = algorith.search(query: "a", node: start)
+        let pa = algorith.search(query: "a", node: start, searchMethod: searchMethod)
         print(printer(path: pa))
         results.append(pa)
 
-        let pc = algorith.search(query: "c", node: start)
+        let pc = algorith.search(query: "c", node: start, searchMethod: searchMethod)
         print(printer(path: pc))
         results.append(pc)
 
-        let pd = algorith.search(query: "d", node: start)
+        let pd = algorith.search(query: "d", node: start, searchMethod: searchMethod)
         print(printer(path: pd))
         results.append(pd)
 
-        let pg = algorith.search(query: "g", node: start)
+        let pg = algorith.search(query: "g", node: start, searchMethod: searchMethod)
         print(printer(path: pg))
         results.append(pg)
     }
 
-    func createGraphForFrontierSearch() -> Node {
+    func complexGraphTest(searchMethod: SearchMethod) {
+
+        let algorith = FrontierSearch()
+        let start = createComplexGraph()
+
+        let pg = algorith.search(query: "g", node: start, searchMethod: searchMethod)
+        print(printer(path: pg))
+        results.append(pg)
+    }
+
+    func createSimpleGraph() -> Node {
 
         // Creates & connects nodes a, b, c, d
         let a = Node( contents: "a")
@@ -56,6 +73,44 @@ class ViewController: UIViewController {
 
         return a
     }
+
+    func createComplexGraph() -> Node {
+
+        // Creates & connects nodes a, b, c, d, e, f, g, h, i, j, k
+        let a = Node( contents: "a")
+        let b = Node( contents: "b")
+        let c = Node( contents: "c")
+        let d = Node( contents: "d")
+        let e = Node( contents: "e")
+        let f = Node( contents: "f")
+        let g = Node( contents: "g")
+        let h = Node( contents: "h")
+        let i = Node( contents: "i")
+        let j = Node( contents: "j")
+        let k = Node( contents: "k")
+
+        //level 1
+        a.children.append( b)
+        a.children.append( c)
+        a.children.append( d)
+
+        //level 2
+        b.children.append( e)
+        b.children.append( f)
+
+        c.children.append( g)
+        c.children.append( h)
+        c.children.append( i)
+
+        d.children.append(j)
+
+        //level 3
+        j.children.append( k)
+        j.children.append( g)
+
+        return a
+    }
+
 
     
     func printer( path: Path) -> String {
