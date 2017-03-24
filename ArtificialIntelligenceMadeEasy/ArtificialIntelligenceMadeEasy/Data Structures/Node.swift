@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Node: NSObject {
+class Node {
 
     var contents:String
     var children = [Node]()

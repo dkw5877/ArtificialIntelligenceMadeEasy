@@ -14,12 +14,14 @@ class ViewController: UIViewController {
 
     var paths = [Path]()
     var availableTimes = [String]()
+    var availableTimes2 = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         testFrontierSearch(searchMethod: .DFS)
         testGenerateAndSearch()
+        testGenerateAndSearchFast()
     }
 
     func configureTableView() {
@@ -39,9 +41,18 @@ class ViewController: UIViewController {
 
     func testGenerateAndSearch() {
         let inputs = createSearchInputs()
+        let constraints = createContraints()
         let algorithm = GenerateAndSearch()
-        availableTimes = algorithm.generateAndSearch(anna: inputs[0], betty: inputs[1], cara: inputs[2], donna: inputs[3])
+//        availableTimes = algorithm.generateAndSearch(anna: inputs[0], betty: inputs[1], cara: inputs[2], donna: inputs[3])
+        availableTimes = algorithm.genericGenerateAndSearch(inputs: inputs, constaints: constraints)
         print(availableTimes)
+    }
+
+    func testGenerateAndSearchFast() {
+        let inputs = createSearchInputs()
+        let algorithm = GenerateAndSearch()
+        availableTimes2 = algorithm.generateAndSearchFast(anna: inputs[0], betty: inputs[1], cara: inputs[2], donna: inputs[3])
+        print(availableTimes2)
     }
 
     func simplaGraphTest(searchMethod: SearchMethod) {
@@ -138,6 +149,37 @@ class ViewController: UIViewController {
         return [anna, betty, cara, donna]
 
     }
+
+    func createContraints() -> [(Int) -> Bool] {
+
+        //Anna has classes from 11:00 - 1:50 pm
+        func constraint1(hour:Int) -> Bool {
+            return (hour < 11 || hour > 13)
+        }
+
+        //Betty has classes from noon to 3
+        func constraint2(hour:Int) -> Bool {
+            return (hour < 12 || hour > 15)
+        }
+
+        //Cara has work from 7 to 11 pm
+        func constraint3(hour:Int) -> Bool {
+            return (hour < 19 || hour > 23)
+        }
+
+        //Donna has volunteer hours from 6 to 8 pm
+        func constraint4(hour:Int) -> Bool {
+            return (hour < 18 || hour > 22)
+        }
+
+
+        let annaConstraint: (Int) -> Bool = constraint1
+        let bettyConstraint: (Int) -> Bool = constraint2
+        let caraConstraint: (Int) -> Bool = constraint3
+        let dianaConstraint: (Int) -> Bool = constraint4
+
+        return [annaConstraint, bettyConstraint, caraConstraint, dianaConstraint]
+    }
     
     func printer( path: Path) -> String {
         if path.contents.isEmpty {
@@ -155,7 +197,7 @@ class ViewController: UIViewController {
 extension ViewController : UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -164,6 +206,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
              return paths.count
         case 1:
              return availableTimes.count
+        case 2:
+            return availableTimes2.count
         default:
             return 0
         }
@@ -180,6 +224,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             cell?.textLabel?.text = printer(path: paths[indexPath.row])
         case 1:
             cell?.textLabel?.text = availableTimes[indexPath.row]
+        case 2:
+             cell?.textLabel?.text = availableTimes2[indexPath.row]
         default: break
 
         }
@@ -193,6 +239,8 @@ extension ViewController : UITableViewDelegate, UITableViewDataSource {
             return "Frontier Search"
         case 1:
             return "Generate and Test"
+        case 2:
+            return "Generate and Test Fast"
         default:
             return nil
         }
